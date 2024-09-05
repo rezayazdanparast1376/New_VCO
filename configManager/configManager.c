@@ -3,6 +3,7 @@
 #include "../../main.h"
 #include "../Algoritms/vco/vco.h"
 #include "../OtherLibs/RawBuffer.h"
+#include "../OtherLibs/adc_buffer.h"
 
 ADC_HandleTypeDef   hadc1;
 DMA_HandleTypeDef   hdma_adc1;
@@ -15,6 +16,11 @@ uint32_t  final_adc_value   = 0;
 uint8_t   RxData[4]   = {0};
 uint32_t  pwm_factor  = 50;
 uint32_t  adc_dma_result[1] = {0};
+
+
+uint32_t final_samples[MAX_ADC_FINAL_SAMPLE] = {0};
+ADC_BUF adc_buff = {0};
+
 
 void config_buffers(void);
 void config_uart1(void);
@@ -29,7 +35,7 @@ void config_functions(void) {
   SystemClock_Config();
 
   MX_GPIO_Init();
-  // MX_DMA_Init();
+
   MX_TIM1_Init();
   MX_TIM2_Init();
 
@@ -43,7 +49,8 @@ void config_functions(void) {
   // HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_dma_result, 1);
   HAL_ADC_Start(&hadc1);
   initialize_pwm_signal();
-    
+
+  adc_b_init(&adc_buff, final_samples, MAX_ADC_FINAL_SAMPLE);
 }
 
 

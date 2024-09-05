@@ -2,6 +2,7 @@
 #define _CONFIG_MANAGER_H_
 #include "../../main.h"
 #include "../OtherLibs/RawBuffer.h"
+#include "../OtherLibs/adc_buffer.h"
 
 #define DEFAULT_BUFFER_LENGTH 50
 
@@ -18,7 +19,8 @@ extern uint8_t  adc_conv_complete_flag;
 
 extern uint8_t  RxData[4];
 extern uint32_t pwm_factor;
-extern uint32_t  adc_dma_result[1];
+extern uint32_t adc_dma_result[1];
+extern ADC_BUF  adc_buff;
 
 void config_functions(void);
 

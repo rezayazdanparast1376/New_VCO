@@ -4,6 +4,7 @@
 #include "stm32h7xx_hal.h"
 #include "../OtherLibs/RawBuffer.h"
 #include "../configManager/configManager.h"
+#include "../OtherLibs/adc_buffer.h"
 
 #include "stdbool.h"
 
@@ -16,19 +17,22 @@ void receive_all(void) {
 // 3.276.750
 void receive_analog(void) {
     uint64_t adc_value = 0;
-uint32_t adc_samples[MAX_ADC_SAMPLE] = {0};
+    // uint32_t adc_samples[MAX_ADC_SAMPLE] = {0};
     
-    for (int sample_conter = 0; sample_conter < MAX_ADC_SAMPLE; sample_conter++) {
-        adc_samples[sample_conter] = HAL_ADC_GetValue(&hadc1);
-        if (adc_samples[sample_conter] > 65535) {
-            adc_samples[sample_conter] = 65535;
-        }
-    }
-    for (int sample_conter = 0; sample_conter < MAX_ADC_SAMPLE; sample_conter++) {
-        adc_value += adc_samples[sample_conter];
-    }
-    adc_value = adc_value / MAX_ADC_SAMPLE;
-
+    // for (int sample_conter = 0; sample_conter < MAX_ADC_SAMPLE; sample_conter++) {
+    //     adc_samples[sample_conter] = HAL_ADC_GetValue(&hadc1);
+    //     if (adc_samples[sample_conter] > 65535) {
+    //         adc_samples[sample_conter] = 65535;
+    //     }
+    // }
+    // for (int sample_conter = 0; sample_conter < MAX_ADC_SAMPLE; sample_conter++) {
+    //     adc_value += adc_samples[sample_conter];
+    // }
+    // adc_value = adc_value / MAX_ADC_SAMPLE;
+    adc_value = HAL_ADC_GetValue(&hadc1);
+    adc_b_push(&adc_buff, adc_value);
+    adc_value = adc_b_avr(&adc_buff);
+    
     if (final_adc_value != adc_value) {
         final_adc_value = adc_value;
     }
