@@ -32,7 +32,6 @@ int main(void) {
  */
 void routine_10ms(void){
   receive_all();
-  generate_pulse();
 }
 
 
@@ -42,7 +41,7 @@ void routine_10ms(void){
  * 
  */
 void routine_100ms(void){
-
+    generate_pulse();
 }
 
 
