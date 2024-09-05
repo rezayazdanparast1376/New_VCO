@@ -7,44 +7,6 @@
 
 
 
-uint8_t time_factor_1ms   = 0;
-uint8_t time_factor_10ms  = 0;
-uint8_t time_factor_100ms = 0;
-uint8_t time_factor_500ms = 0;
-uint8_t time_factor_5s    = 0;
-
-
-uint64_t time_per_mili_second = 0;//based 1 ms.
-
-
-/* USER CODE BEGIN 4 */
-/**
- * @brief Calling in every 1000us or 1ms.s
- * 
- * @param htim 
- */
-void HAL_TIM_PeriodElapsedCallback(
-    TIM_HandleTypeDef* htim
-) {
-    /// TODO: Securing a call for timer 2
-    time_per_mili_second++;
-
-    if((time_per_mili_second % 10) == 1) {
-        time_factor_10ms = 1;
-    }
-
-    if ((time_per_mili_second % 100) == 1) {
-        time_factor_100ms = 1;
-    }
-    
-    if ((time_per_mili_second % 500) == 1) {
-        time_factor_500ms = 1;
-    }
-    
-    if ((time_per_mili_second % 5000) == 1) {
-        time_factor_5s = 1;
-    }
-}
 
 
 
@@ -55,15 +17,54 @@ void HAL_TIM_PeriodElapsedCallback(
   */
 int main(void) {
 
-    config_functions();
+  config_functions();
 
-    while (1) {
-      receive_all();
-      generate_pulse();
-    }
+  while (1) {
+    timing_routine();
+  }
 
 }
 
+
+/**
+ * @brief Must be execute each 10ms
+ * 
+ */
+void routine_10ms(void){
+  receive_all();
+  generate_pulse();
+}
+
+
+
+/**
+ * @brief Must be execute each 100ms
+ * 
+ */
+void routine_100ms(void){
+
+}
+
+
+
+/**
+ * @brief Must be execute each 500ms
+ * 
+ */
+void routine_500ms(void){
+
+
+}
+
+
+
+/**
+ * @brief Must be execute each 5ms
+ * 
+ */
+void routine_5s(void){
+
+}
 
 /**
   * @brief  This function is executed in case of error occurrence.

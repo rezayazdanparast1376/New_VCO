@@ -1,6 +1,6 @@
 #ifndef _CONFIG_MANAGER_H_
 #define _CONFIG_MANAGER_H_
-#include "main.h"
+#include "../../main.h"
 #include "../OtherLibs/RawBuffer.h"
 
 #define DEFAULT_BUFFER_LENGTH 50

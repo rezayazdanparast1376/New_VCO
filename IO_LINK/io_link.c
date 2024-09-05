@@ -1,4 +1,4 @@
-#include "main.h"
+#include "../../main.h"
 #include "io_link.h"
 #include "stm32h7b0xx.h"
 #include "stm32h7xx_hal.h"
