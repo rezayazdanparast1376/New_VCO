@@ -34,6 +34,7 @@ void config_functions(void) {
 
   SystemClock_Config();
 
+  MX_DMA_Init();
   MX_GPIO_Init();
 
   MX_TIM1_Init();

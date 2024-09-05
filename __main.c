@@ -20,28 +20,21 @@ int main(void) {
   config_functions();
 
   while (1) {
+    receive_all();
     timing_routine();
   }
 
 }
 
 
-/**
- * @brief Must be execute each 10ms
- * 
- */
 void routine_10ms(void){
-  receive_all();
+  generate_pulse();
 }
 
 
 
-/**
- * @brief Must be execute each 100ms
- * 
- */
+
 void routine_100ms(void){
-    generate_pulse();
 }
 
 

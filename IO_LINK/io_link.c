@@ -57,5 +57,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
     if (huart->Instance == USART1) {
         uart1_recev_cmp = true;
     }
+      HAL_UART_Receive_DMA(&huart1, RxData, 4);
+
     //TODO: Implementation for other usart interface ...
 }
