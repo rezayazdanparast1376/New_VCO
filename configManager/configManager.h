@@ -11,6 +11,7 @@ extern ADC_HandleTypeDef   hadc1;
 extern DMA_HandleTypeDef   hdma_adc1;
 extern TIM_HandleTypeDef   htim1;
 extern UART_HandleTypeDef  huart1;
+extern TIM_HandleTypeDef htim2;
 
 extern uint32_t final_adc_value;
 extern uint8_t  adc_conv_complete_flag;
@@ -27,8 +28,10 @@ void MPU_Config(void);
 void MX_GPIO_Init(void);
 void MX_DMA_Init(void);
 void MX_TIM1_Init(void);
+void MX_TIM2_Init(void);
 void MX_ADC1_Init(void);
 void MX_USART1_UART_Init(void);
+void TIM2_IRQHandler(void);
 
 #endif
 
